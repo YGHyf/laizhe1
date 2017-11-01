@@ -1,6 +1,6 @@
 <template>
  		<header class="header">
- 		<div class="header-left"><</div>
+ 		<div class="header-left iconfont icon-fanhui"></div>
  		<div class="header-title">
  			输入城市/景点/游玩主题
  		</div>
@@ -33,6 +33,7 @@ export default {
 	.header-title {
 		position: absolute;
 		left: .8rem;
+		width: 5.2rem;
 		right: 1.28rem;
 		top: .14rem;
 		line-height: .6rem;
@@ -42,19 +43,25 @@ export default {
 		color: #ccc;
 	}
 	.header-right {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
 		float: right;
-		width: 1.28rem;
+		width: .88rem;
 		line-height: .88rem;
 		text-align: center;
+		margin-right: .5rem;
 		color: #fff;
 	}
 	.header-right::after {
+		
 		content: "\0020";
 		position: absolute;
-		top: .2rem;
-		right: 0;
-		width: .2rem;
-		height: .2rem;
-		background: red;
+		border: .16rem solid #fff;
+		border-color : #fff transparent transparent transparent; 
+		top: .32rem;
+		right: .1rem;
+		
+		
 	}
 </style>
