@@ -40,7 +40,6 @@ export default {
 </script>
 
 <style>
-
 	.list-content{
 		justify-content: center;
 		display: flex;
