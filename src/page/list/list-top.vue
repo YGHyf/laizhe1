@@ -1,30 +1,26 @@
 <template>
- 		<header class="header">
- 		<div class="header-left iconfont icon-fanhui"></div>
-	 	<router-link to="/list">
-		 		<div class="header-title">
-		 			输入城市/景点/游玩主题
-		 		</div>
-	 	</router-link>
- 		<div class="header-right">
- 			北京
+ 		<header class="list-top">
+ 		<div class="list-top-left   iconfont icon-fanhui"></div>
+		 		<input class="list-top-title" autofocus="autofocus"  placeholder="输入城市/景点/游玩主题" />
+ 		<div class="list-top-right">
+ 			搜索
  		</div>
  	</header>
 </template>
 
 <script>
 export default {
-	
+ 
 }
 </script>
 
 <style>
-	.header {
+	.list-top {
 		position: relative;
 		height: .88rem;
 		background: #00bcd4;
 	}
-	.header-left {
+	.list-top-left {
 		float: left;
 		width: .4rem;
 		padding: 0 .2rem;
@@ -32,7 +28,7 @@ export default {
 		font-size: .4rem;
 		color: #fff;
 	}
-	.header-title {
+	.list-top-title {
 		position: absolute;
 		left: .8rem;
 		width: 5.2rem;
@@ -44,7 +40,12 @@ export default {
 		text-indent: .2rem;
 		color: #ccc;
 	}
-	.header-right {
+	.list-top-title{
+		border: none;
+		border-radius: .1rem;
+	}
+	.list-top-right {
+		font-size: .4rem;
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
@@ -52,18 +53,7 @@ export default {
 		width: .88rem;
 		line-height: .88rem;
 		text-align: center;
-		margin-right: .5rem;
+		margin-right: .3rem;
 		color: #fff;
-	}
-	.header-right::after {
-		
-		content: "\0020";
-		position: absolute;
-		border: .16rem solid #fff;
-		border-color : #fff transparent transparent transparent; 
-		top: .32rem;
-		right: .1rem;
-		
-		
 	}
 </style>
