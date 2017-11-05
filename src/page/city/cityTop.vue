@@ -1,11 +1,5 @@
 <template>
- 		<header class="list-top">
- 		<div class="list-top-left   iconfont icon-fanhui"></div>
-		 		<input class="list-top-title" autofocus="autofocus"  placeholder="输入城市/景点/游玩主题" />
- 		<div class="list-top-right">
- 			{{con}}
- 		</div>
- 	</header>
+ 		
 </template>
 
 <script>
@@ -19,12 +13,12 @@ export default {
 </script>
 
 <style>
-	.list-top {
+	.city-top {
 		position: relative;
-		height: .88rem;
+		height: 1.8rem;
 		background: #00bcd4;
 	}
-	.list-top-left {
+	.city-top-left {
 		float: left;
 		width: .4rem;
 		padding: 0 .2rem;
@@ -32,23 +26,25 @@ export default {
 		font-size: .4rem;
 		color: #fff;
 	}
-	.list-top-title {
+	.city-top-title {
+		text-align: center;
 		position: absolute;
-		left: .8rem;
 		width: 5.2rem;
 		right: 1.28rem;
+		left: 5%;
 		top: .14rem;
 		line-height: .6rem;
 		background: #fff;
 		border-radius: .06rem;
 		text-indent: .2rem;
 		color: #ccc;
-	}
-	.list-top-title{
+		width: 90%;
+		margin-top: .8rem;
 		border: none;
 		border-radius: .1rem;
 	}
-	.list-top-right {
+
+	.city-top-right {
 		font-size: .4rem;
 		overflow: hidden;
 		text-overflow: ellipsis;
@@ -59,5 +55,24 @@ export default {
 		text-align: center;
 		margin-right: .3rem;
 		color: #fff;
+	}
+	.city-top-title1,.city-top-title2{
+		color: #fff;
+	     float: left;
+		margin-top: .2rem;
+		width: 1.6rem;border: 2px solid #fff;
+		background: none;
+	}
+	.city-top-title1{
+		color: #00BCD4;
+		background: #fff;
+		margin-left: 1.2rem;
+		border-top-left-radius: .1rem;
+		border-bottom-left-radius: .1rem;
+	}
+	.city-top-title2{
+		
+		border-top-right-radius: .1rem;
+		border-bottom-right-radius: .1rem;
 	}
 </style>

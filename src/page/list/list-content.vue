@@ -4,27 +4,59 @@
 	 		 	<span class="list-content-topLeft">
 	 		 		热门搜索
 	 		 	</span>
-	 		 	<span class="list-content-topRight iconfont icon-shuaxin">
+	 		 	<span class="list-content-topRight iconfont icon-shuaxin" @click="ListContent">
 	 		 		换一批
 	 		 	</span>
 	 		 </p>
-	 		 
+	 		 <ul class="list-content-contentul" ><li v-for="item in listss">{{item}}</li></ul>
 	 		 <span class="list-content-contentLeft iconfont icon-iconset0210"></span>
-	 		 <ul class="list-contentul">
-	 		 	<li><a href="#">宋城千古城</a></li>
-	 		 	<li><a href="#">故宫</a></li>
-	 		 	<li><a href="#">天门狐仙</a></li>
-	 		 	<li><a href="#">张家界大峡谷</a></li>
-	 		 	<li><a href="#">颐和园</a></li>
-	 		 	<li><a href="#">拨浪鼓往返轮渡</a></li>
-	 		 	<li><a href="#">香山公园</a></li>
+	 		 <ul class="list-contentul" v-if="con[0]">
+	 		 	<li><a href="#" @click="handleClick">宋城千古城</a></li>
+	 		 	<li><a href="#" @click="handleClick">故宫</a></li>
+	 		 	<li><a href="#" @click="handleClick">天门狐仙</a></li>
+	 		 	<li><a href="#" @click="handleClick">张家界大峡谷</a></li>
+	 		 	<li><a href="#" @click="handleClick">颐和园</a></li>
+	 		 	<li><a href="#" @click="handleClick">拨浪鼓往返轮渡</a></li>
+	 		 	<li><a href="#" @click="handleClick">香山公园</a></li>
 	 		 </ul>
-	 		 <ol class="list-contentol">
+	 		  <ul class="list-contentul" v-if="con[1]">
+	 		 	<li><a href="#" @click="handleClick">天门狐仙</a></li>
+	 		 	<li><a href="#" @click="handleClick">故宫</a></li>
+	 		 	<li><a href="#" @click="handleClick">宋城千古城</a></li>
+	 		 	<li><a href="#" @click="handleClick">香山公园</a></li>
+	 		 	<li><a href="#" @click="handleClick">颐和园</a></li>
+	 		 	<li><a href="#" @click="handleClick">张家界大峡谷</a></li>
+	 		 	<li><a href="#" @click="handleClick">天安门</a></li>
+	 		 </ul>
+	 		  <ul class="list-contentul" v-if="con[2]">
+	 		 	<li><a href="#" @click="handleClick">圆明园</a></li>
+	 		 	<li><a href="#" @click="handleClick">故宫</a></li>
+	 		 	<li><a href="#" @click="handleClick">天门</a></li>
+	 		 	<li><a href="#" @click="handleClick">张家界大峡谷</a></li>
+	 		 	<li><a href="#" @click="handleClick">颐和园</a></li>
+	 		 	<li><a href="#" @click="handleClick">拨浪鼓往返轮渡</a></li>
+	 		 	<li><a href="#" @click="handleClick">香山公园</a></li>
+	 		 </ul>
+	 		 <ol class="list-contentol" v-if="con1[0]">
 	 		 	<li class="list-contentol-li "><span class="iconfont icon-chengshi"></span></li>
-	 		 	<li><a href="#">广州</a></li>
-	 		 	<li><a href="#">上海</a></li>
-	 		 	<li><a href="#">北京</a></li>
-	 		 	<li><a href="#">三亚</a></li>
+	 		 	<li><a href="#" @click="handleClick">广州</a></li>
+	 		 	<li><a href="#" @click="handleClick">上海</a></li>
+	 		 	<li><a href="#" @click="handleClick">北京</a></li>
+	 		 	<li><a href="#" @click="handleClick">三亚</a></li>
+	 		 </ol>
+	 		 <ol class="list-contentol"  v-if="con1[1]">
+	 		 	<li class="list-contentol-li "><span class="iconfont icon-chengshi"></span></li>
+	 		 	<li><a href="#" @click="handleClick">拉萨</a></li>
+	 		 	<li><a href="#" @click="handleClick">青岛</a></li>
+	 		 	<li><a href="#" @click="handleClick">深圳</a></li>
+	 		 	<li><a href="#" @click="handleClick">南京</a></li>
+	 		 </ol>
+	 		 <ol class="list-contentol"  v-if="con1[2]">
+	 		 	<li class="list-contentol-li "><span class="iconfont icon-chengshi"></span></li>
+	 		 	<li><a href="#" @click="handleClick">无锡</a></li>
+	 		 	<li><a href="#" @click="handleClick">杭州</a></li>
+	 		 	<li><a href="#" @click="handleClick">苏州</a></li>
+	 		 	<li><a href="#" @click="handleClick">扬州</a></li>
 	 		 </ol>
 	 		 <div class="list-content-bottom">
 	 		 	搜索身边的景点
@@ -35,7 +67,32 @@
 <script>
 
 export default {
-	
+	data(){
+		return{
+		 con:[true,false,false],
+		con1:[true,false,false],
+		listss:[]
+		}
+	},
+	methods:{
+		ListContent:function(){	
+			   if(this.con[0]){
+			  	this.con=[false,true,false];
+			  	this.con1=[false,true,false];
+			  }else if(this.con[1]){
+			  	this.con=[false,false,true];
+			  	this.con1=[false,false,true]
+			  }else if(this.con[2]){
+			  	this.con=[true,false,false];
+			  	this.con1=[true,false,false]  
+			  }
+		 },
+		 handleClick:function(e){
+		 	if(this.listss.indexOf(e.target.text)==-1){
+		     this.listss.push(e.target.text);
+		    }
+		 }						
+    }
 }
 </script>
 
@@ -109,4 +166,19 @@ export default {
 		padding: 0.26rem;
 		border: 1px solid #ccc;	
 	}
+	.list-content-contentul{
+		width: 100%;
+		padding: .2rem .2rem 0;
+		border-bottom: 1px solid #ccc;
+	}
+	.list-content-contentul li{
+		text-align: center;
+		margin-bottom: .2rem;
+		margin-right: .4rem;
+		
+		padding: .1rem .2rem;
+		border: 1px solid #ccc;
+		float: left;
+	}
+	
 </style>

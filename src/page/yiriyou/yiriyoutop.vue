@@ -1,30 +1,26 @@
 <template>
- 		<header class="list-top">
- 		<div class="list-top-left   iconfont icon-fanhui"></div>
-		 		<input class="list-top-title" autofocus="autofocus"  placeholder="输入城市/景点/游玩主题" />
- 		<div class="list-top-right">
- 			{{con}}
+ 		<header class="yiriyou-top">
+ 		<div class="yiriyou-top-left   iconfont icon-fanhui"></div>
+		 		<input class="yiriyou-top-title" autofocus="autofocus"  placeholder="一日游" /><a href="#" class="iconfont icon-cuowu yiriyou-top-titlea"></a>
+ 		<div class="yiriyou-top-right">
+ 			搜索
  		</div>
  	</header>
 </template>
-
 <script>
 export default {
-   data:function(){
-   	return {
-   		con:"搜索"
-   	}
-   }
+
+      
 }
 </script>
 
 <style>
-	.list-top {
+	.yiriyou-top {
 		position: relative;
 		height: .88rem;
 		background: #00bcd4;
 	}
-	.list-top-left {
+	.yiriyou-top-left {
 		float: left;
 		width: .4rem;
 		padding: 0 .2rem;
@@ -32,7 +28,7 @@ export default {
 		font-size: .4rem;
 		color: #fff;
 	}
-	.list-top-title {
+	.yiriyou-top-title {
 		position: absolute;
 		left: .8rem;
 		width: 5.2rem;
@@ -44,11 +40,17 @@ export default {
 		text-indent: .2rem;
 		color: #ccc;
 	}
-	.list-top-title{
+	.yiriyou-top-titlea{
+      
+		position: absolute;
+		 top:.28rem;
+		 left: 5.4rem;
+	}
+	.yiriyou-top-title{
 		border: none;
 		border-radius: .1rem;
 	}
-	.list-top-right {
+	.yiriyou-top-right {
 		font-size: .4rem;
 		overflow: hidden;
 		text-overflow: ellipsis;
