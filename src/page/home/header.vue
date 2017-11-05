@@ -6,9 +6,11 @@
 		 			输入城市/景点/游玩主题
 		 		</div>
 	 	</router-link>
+	 	<router-link to="/city">
  		<div class="header-right">
  			北京
  		</div>
+ 		</router-link>
  	</header>
 </template>
 
