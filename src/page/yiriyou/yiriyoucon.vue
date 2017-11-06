@@ -1,13 +1,13 @@
 <template>
     <div class="yiriyouCon">
-    	<a class="yiriyouConTopa iconfont icon-jiantou-copy-copy" @click="yiriyouConTopa"></a>
+    	    <a class="yiriyouConTopa iconfont icon-jiantou-copy-copy" @click="yiriyouConTopa"></a>
     	<div class="yiriyouConTop" v-if="con1">
     		<ul class="yiriyouConUl1" >	<li v-for="item in lists">{{item}}</li></ul>
     	</div>
-    	<div class="yiriyouConTop1" v-if="con2">
+    	<div class="yiriyouConTop1" v-if="con2" >
     		<p class="yiriyouConTop1p" >游玩景点（可多选）<span class="iconfont icon-angle-up" @click="yiriyouConTop1pspan"></span></p>
     		<ul class="yiriyouConTop1ul"  v-for="item in lists">
-    			<li>{{item}}</li>
+    		<li>{{item}}</li>
     		</ul>
     	</div>
     	<dl class="yiriyoudl1"></dl>
@@ -16,7 +16,12 @@
     		<dd class="yiriyoudd1">{{item.title}}</dd>
     		<dd class="yiriyoudd2"><span style="color: #00BCD4;">{{item.span1}}</span><span>{{item.span2}}</span><span style="border-right: none;">{{item.span3}}</span></dd>
     		<dd class="yiriyoudd3"><span>{{item.span4}}</span><strong>{{item.strong}}</strong></dd>	
-    	</dl>   	
+    	</dl>  
+    	<div class="yiriyouConFooter">
+    		<button class="iconfont icon-quanbufenlei"><a href="#">全部分类</a></button>
+    		<button class="iconfont icon-shaixuan"><a href="#">筛选</a></button>
+    		<button class="iconfont icon-paixu"><a href="#">分类排序</a></button>
+    	</div>
     </div>
 </template>
 <script>
@@ -128,7 +133,7 @@ export default {
 			}]
 		}
 	},
-	
+
 	methods:{
 		yiriyouConTop1pspan:function(){
 			this.con1 = true;
@@ -265,5 +270,31 @@ export default {
 .yiriyoudl1{
    padding-top: .9rem;
 }
+.yiriyouConFooter{
+	position: fixed;
+	bottom: 0;
+	display: flex;
+    overflow: hidden;	
+	height: 1.4rem;
+	width: 100%;
+	background: #212121;
+	opacity: 0.9;
+
+}
+
+.yiriyouConFooter button{
+	font-size: .34rem;
+	color: #fff;
+	border:none;
+	background: none;
+	height: 2rem;
+	flex: 1;
+	padding-bottom: .4rem;
+}
+.yiriyouConFooter button a{
+	display: block;
+	color: #fff;
+}
+
 
 </style>
