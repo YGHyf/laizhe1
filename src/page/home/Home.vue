@@ -1,27 +1,21 @@
 <template>
 	<div>
-         <home-header/>
-         <swiper-content/>
-          <swiperul-content/>
-	     <home-fourPart/>
-		 <weekend-list/>
+		 <home-header/>
+		 <home-main/>
 	</div>
 </template>
 
 <script>
 import HeaderComponent from "./header";
-import SwiperComponent from "./swiper";
-import SwiperulComponent from "./swiperul";
-import FourPartComponent from "./FourPart";
-import weekendList from "./weekend-list";
-
+import MainComponent from "./main";
 export default {
    components: {
 		"home-header": HeaderComponent,
-		"swiper-content": SwiperComponent,
-		"swiperul-content": SwiperulComponent,
-		"home-fourPart":FourPartComponent,
-		"weekend-list":weekendList
-		}
+		"home-main":MainComponent
+	}
 }
 </script>
+
+<style>
+       
+</style>
