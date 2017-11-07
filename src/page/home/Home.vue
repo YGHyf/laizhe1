@@ -1,17 +1,40 @@
 <template>
 	<div>
-		 <home-header/>
-		 <home-main/>
+		 <index-header/>
+		 <index-swiper/>
+         <index-icon-swiper/>
+         <index-activity/>
+	     <index-hotsale/>
+		 <index-weekend/>
+
 	</div>
 </template>
 
 <script>
-import HeaderComponent from "./header";
-import MainComponent from "./main";
+import Header from "./header";
+import Swiper from "./swiper";
+import IconSwiperul from "./iconSwiper";
+import Activity from "./activity";
+import Recommend from "./FourPart";
+import WeekendList from "./weekend-list";
+import axios from "axios"
 export default {
    components: {
-		"home-header": HeaderComponent,
-		"home-main":MainComponent
+		"index-header": Header,
+		"index-swiper": Swiper,
+		"index-icon-swiper": IconSwiperul,
+		"index-activity":Activity,
+		"index-hotsale":Recommend,
+		"index-weekend":WeekendList
+	},
+	mounted:function(){
+		axios.get('/user?ID=12345')
+		  .then(function (response) {
+		    console.log(response);
+		  })
+		  .catch(function (error) {
+		    console.log(error);
+  });
 	}
 }
 </script>
