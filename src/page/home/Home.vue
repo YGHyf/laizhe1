@@ -15,8 +15,8 @@ import SwiperulComponent from "./swiperul";
 import FourPartComponent from "./FourPart";
 import weekendList from "./weekend-list";
 import axios from 'axios';
-export default {
 
+export default {
 
    components: {
 		"home-header": HeaderComponent,
@@ -47,5 +47,8 @@ export default {
 	mounted() {
 		this.getHomeData();
 	}
+
 }
+
+
 </script>
