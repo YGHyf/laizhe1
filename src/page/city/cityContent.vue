@@ -11,7 +11,7 @@
 	     	 <p class="cityContentP1">您的位置</p>
 	     	 <ul class="cityContentUl1"><li>北京</li></ul>
 	     </div>
-	     <div class="cityContentD2">
+	     <div class="cityContentD2" v-if="flag1">
 	     	 <p class="cityContentP1"  ref="input1">热门城市</p>
 	     	 <ul class="cityContentUl2"><li v-for="item in remenlist" style="float: left;">{{item}}</li></ul>
 	     </div>
