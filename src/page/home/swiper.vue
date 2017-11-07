@@ -1,16 +1,11 @@
+
 <template>
   <swiper :options="swiperOption" ref="mySwiper">
     <!-- slides -->
-    <swiper-slide class="shou-swiper">
-    	<img class="shou-swiper-img" src="http://img1.qunarzz.com/piao/fusion/1710/f5/57137c621d75ba02.jpg_640x170_0d5202d3.jpg" />
+    <swiper-slide class="shou-swiper" v-for="item in swiperInfo" :key="item.id">
+    	<img class=" shou-swiper-img swiper-img" :src="item.imgUrl">
     </swiper-slide>
-    <swiper-slide class="shou-swiper">
-    	<img class="shou-swiper-img" src="http://img1.qunarzz.com/piao/fusion/1710/94/e41712475cc4e702.jpg_640x170_f5dd3e83.jpg" />
-    </swiper-slide>
-    <swiper-slide class="shou-swiper">
-    	<img class="shou-swiper-img" src="http://img1.qunarzz.com/piao/fusion/1710/f5/57137c621d75ba02.jpg_640x170_0d5202d3.jpg" />
-    </swiper-slide>
-    <!-- Optional controls -->
+ 
     <div class="swiper-pagination"  slot="pagination"></div>
   </swiper> 
 </template>
@@ -18,6 +13,7 @@
 <script>
   import { swiper, swiperSlide } from 'vue-awesome-swiper';
   export default { 
+  	 props: ["swiperInfo"],
     data() {
       return {      
         swiperOption: {

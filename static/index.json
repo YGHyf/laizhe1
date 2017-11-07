@@ -1,0 +1,14 @@
+{
+	"ret": true,
+	"data": {
+		"swiperInfo": [{
+			"id": 1,
+			"imgUrl": "http://img1.qunarzz.com/piao/fusion/1710/f5/57137c621d75ba02.jpg_640x170_0d5202d3.jpg",
+			"link": "/list"
+		}, {
+			"id": 2,
+			"imgUrl": "http://img1.qunarzz.com/piao/fusion/1710/f5/57137c621d75ba02.jpg_640x170_0d5202d3.jpg",
+			"link": "/list"
+		}]
+	}
+}

@@ -16,8 +16,20 @@
     		<dd class="yiriyoudd1">{{item.title}}</dd>
     		<dd class="yiriyoudd2"><span style="color: #00BCD4;">{{item.span1}}</span><span>{{item.span2}}</span><span style="border-right: none;">{{item.span3}}</span></dd>
     		<dd class="yiriyoudd3"><span>{{item.span4}}</span><strong>{{item.strong}}</strong></dd>	
-    	</dl>   	
+    	</dl>   
+    	 <div class="footer" v-if="show">
+    	   <button class="footerbtn iconfont icon-quanbufenlei">
+    	   	  <span class="footerbtnsp">全部分类</span>   	 
+    	   </button>
+    	   <button class="footerbtn iconfont icon-shaixuan">
+    	   	 <span class="footerbtnsp">筛选</span>
+    	   </button>
+    	   <button class="footerbtn iconfont icon-paixu">
+    	   	 <span class="footerbtnsp">排序</span>
+    	   </button>
+         </div>
     </div>
+   
 </template>
 <script>
 export default {
@@ -26,6 +38,9 @@ export default {
 			lists:['八达岭长城','故宫','古北水镇','鸟巢','水利当','八达岭长城','故宫','古北水镇','鸟巢','水利当','八达岭长城','故宫','古北水镇','鸟巢','水利当','把雁塔','八达岭长城','故宫','古北水镇','鸟巢','水利当','把雁塔'],
 			con1:true,
 			con2:false,
+			show:false,
+			scrollTop1:0,
+			scrollTop2:0,
 			yiriyoulist:[{
 				span:"可预定",
 				img:"http://img1.qunarzz.com/p/tts1/1605/35/f267ae654a8511f7.jpg_110x110_33358754.jpg",
@@ -135,16 +150,30 @@ export default {
 			this.con2 = false;
 		},
 	    yiriyouConTopa:function(){
-	      console.log(this.$refs)
 	      this.con1 = false;
 		  this.con2 = true;
-	    }
-	 }
+	    },
+
+	    handleScroll: function() {
+	    
+   			this.scrollTop1 = this.scrollTop2;  
+		  	this.scrrfrollTop2 = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+		  	if(this.scrollTop1 <= this.scrollTop2) {
+		  		this.show = true;
+		  	    }else {
+		  		this.show = false;
+		  	}	  	   
+	},
 	
-	}
+    },
+    mounted:function(){
+		window.addEventListener("scroll",this.handleScroll);
+	    }
+}
 </script>
 
 <style>
+
 .icon-jiantou-copy-copy{
 	color: #344344;
 	padding-top: .1rem;
@@ -255,8 +284,7 @@ export default {
 }
 
 .yiriyouConTop1ul li{
-	float: left;
-	
+	float: left;	
 	background: #fff;
 	padding: .2rem .3rem;
 	margin-right: .2rem;
@@ -264,6 +292,29 @@ export default {
 }
 .yiriyoudl1{
    padding-top: .9rem;
+}
+.footer{
+	display: flex;
+	height:1.5rem ;
+	width: 100%;
+	background: #212121;
+	opacity: .9;
+	position: fixed;
+	bottom: 0;
+}
+.footerbtn{
+	
+	flex: 1;
+	border: none;
+	background: none;
+	color: #fff;
+	font-size: .36rem;
+	
+}
+
+.footerbtn .footerbtnsp{
+	display: block;
+
 }
 
 </style>
