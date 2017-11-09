@@ -1,10 +1,11 @@
 <template>
-	<div>
+	<div class="city-top-all">
 	<header class="city-top">
- 		<div class="city-top-left   iconfont icon-fanhui"></div>
+		<div class="city-top1">
+ 		    <div class="city-top-left   iconfont icon-fanhui" @click="cityTopLeftClick"></div>
  		    <input ref="guonei" class="city-top-title1" type="button" value="国内"  @click="handleguonei"/>  <input ref="guowai" class="city-top-title2" type="button" value="海外" @click="handleguowai" />
+ 	    </div>
  			<input class="city-top-title" autofocus="autofocus"  placeholder="输入城市拼音或名称" />
- 		
  	    </header>
 	<footer>
 	     <div class="cityContentD1">
@@ -13,22 +14,30 @@
 	     </div>
 	     <div class="cityContentD2" v-if="flag1">
 	     	 <p class="cityContentP1"  ref="input1">热门城市</p>
-	     	 <ul class="cityContentUl2"><li v-for="item in remenlist" style="float: left;">{{item}}</li></ul>
+	     	 <ul class="cityContentUl2"><li v-for="item in cityInfo.title" style="float: left;">{{item}}</li></ul>
 	     </div>
 	     <div class="cityContentD3">
-	     	 <ul class="cityContentUl3" ref="ula"><li v-for="item in lista" v-if="flag1">{{item}}</li><li v-for="item in lista1" v-if="flag">{{item}}</li></ul>
-	     	 <ul class="cityContentUl3" ref="ulb"><li v-for="item in listb" v-if="flag1">{{item}}</li><li v-for="item in listb1" v-if="flag">{{item}}</li></ul>
-	     	 <ul class="cityContentUl3" ref="ulc"><li v-for="item in listc" v-if="flag1">{{item}}</li><li v-for="item in listc1" v-if="flag">{{item}}</li></ul>
-	     	 <ul class="cityContentUl3" ref="uld"><li v-for="item in listd" v-if="flag1">{{item}}</li><li v-for="item in listd1" v-if="flag">{{item}}</li></ul>
-	     	 <ul class="cityContentUl3" ref="ule"><li v-for="item in liste" v-if="flag1">{{item}}</li><li v-for="item in liste1" v-if="flag">{{item}}</li></ul>
+	     	 <ul class="cityContentUl3" ref="ula"><li v-for="item in cityInfo.cityInfo1.A" v-if="flag1">{{item}}</li><li v-for="item in cityInfo.cityInfo2.A" v-if="flag">{{item}}</li></ul>
+	     	 <ul class="cityContentUl3" ref="ulb"><li v-for="item in cityInfo.cityInfo1.B" v-if="flag1">{{item}}</li><li v-for="item in cityInfo.cityInfo2.B" v-if="flag">{{item}}</li></ul>
+	     	 <ul class="cityContentUl3" ref="ulc"><li v-for="item in cityInfo.cityInfo1.C" v-if="flag1">{{item}}</li><li v-for="item in cityInfo.cityInfo2.C" v-if="flag">{{item}}</li></ul>
+	     	 <ul class="cityContentUl3" ref="uld"><li v-for="item in cityInfo.cityInfo1.D" v-if="flag1">{{item}}</li><li v-for="item in cityInfo.cityInfo2.D" v-if="flag">{{item}}</li></ul>
+	     	 <ul class="cityContentUl3" ref="ule"><li v-for="item in cityInfo.cityInfo1.E" v-if="flag1">{{item}}</li><li v-for="item in cityInfo.cityInfo2.E" v-if="flag">{{item}}</li></ul>
+	     	 <ul class="cityContentUl3" ref="ulf"><li v-for="item in cityInfo.cityInfo1.F" v-if="flag1">{{item}}</li><li v-for="item in cityInfo.cityInfo2.F" v-if="flag">{{item}}</li></ul>
+	     	 <ul class="cityContentUl3" ref="ulx"><li v-for="item in cityInfo.cityInfo1.X" v-if="flag1">{{item}}</li><li v-for="item in cityInfo.cityInfo2.X" v-if="flag">{{item}}</li></ul>
+	     	 <ul class="cityContentUl3" ref="uly"><li v-for="item in cityInfo.cityInfo1.Y" v-if="flag1">{{item}}</li><li v-for="item in cityInfo.cityInfo2.Y" v-if="flag">{{item}}</li></ul>
+	     	 <ul class="cityContentUl3" ref="ulz"><li v-for="item in cityInfo.cityInfo1.Z" v-if="flag1">{{item}}</li><li v-for="item in cityInfo.cityInfo2.Z" v-if="flag">{{item}}</li></ul>
 	     </div>
 	     <div class="fixed">
-	     	<ul class="fixedul">
-	     		<li @click="ulatop">A</li>
-	     		<li @click="ulbtop">B</li>
-	     		<li @click="ulctop">C</li>
-	     		<li @click="uldtop">D</li>
-	     		<li @click="uletop">E</li>
+	     	<ul class="fixedul" >
+	     		<li @touchstart="ulatop">A</li>
+	     		<li @touchstart="ulbtop">B</li>
+	     		<li @touchmove="ulctop" >C</li>
+	     		<li @touchstart="uldtop">D</li>
+	     		<li @touchstart="uletop">E</li>
+	     		<li @touchstart="ulftop">F</li>
+	     		<li @touchstart="ulxtop">X</li>
+	     		<li @touchstart="ulytop">Y</li>
+	     		<li @touchstart="ulztop">Z</li>
 	     	</ul>
 	     </div>
      </footer>
@@ -37,19 +46,9 @@
 <script>
 
 export default {
+	
    data(){
    	return {
-   	   remenlist:['西双版纳','北京','青岛','拉萨','昆明','西双版纳','北京','青岛','拉萨','昆明','西双版纳','北京','青岛','拉萨','昆明'],
-   	   lista:["A","阿拉求1","阿拉求2","阿拉求3","阿拉求4","阿拉求5","阿拉求6","阿拉求7","阿拉求8","阿拉求9"],
-   	   listb:["B","巴哈1","巴哈2","巴哈3","巴哈4","巴哈5","巴哈6","巴哈7","巴哈8","巴哈9"],
-   	   listc:["C","沧州1","沧州2","沧州3","沧州4","沧州5","沧州6","沧州7","沧州8","沧州9"],
-   	   listd:["D","大理1","大理2","大理3","大理4","大理5","大理6","大理7","大理8","大理9"],
-   	   liste:["E","恩施1","恩施2","恩施3","恩施4","恩施5","恩施6","恩施7","恩施8","恩施9"],
-   	   lista1:["A","阿拉求11111111","阿拉求2222222222","阿拉求333333333","阿拉求4444444","阿拉求555555555","阿拉求6666666","阿拉求777777","阿拉求8888888","阿拉求99999999"],
-   	   listb1:["B","巴哈1111111111","巴哈2222222222222222","巴哈3333333","巴哈44444444","巴哈55555555","巴哈666666666","巴哈77777777","巴哈888888888","巴哈99999999"],
-   	   listc1:["C","沧州11111111111","沧州22222222222","沧州333333333","沧州4444444","沧州55555555","沧州66666666","沧州77777777","沧州888888","沧州999999"],
-   	   listd1:["D","大理111111111111","大理2222222222","大理3333333333","大理4444444444444","大理55555555","大理666666","大理7777777777","大理8888888","大理99999999"],
-   	   liste1:["E","恩施111111111111","恩施22222222","恩施3333333333","恩施444444444","恩施55555555","恩施66666666","恩施77777777","恩施888888","恩施999999999"],
    	   flag:false,
    	   flag1:true
    	   }
@@ -62,13 +61,29 @@ export default {
         	 document.documentElement.scrollTop=this.$refs.ulb.offsetTop;
    	  },
    	  ulctop:function(){
-        	 document.documentElement.scrollTop=this.$refs.ulc.offsetTop;
+   	  	     	 document.documentElement.scrollTop=this.$refs.ulc.offsetTop;
    	  },
    	  uldtop:function(){
         	 document.documentElement.scrollTop=this.$refs.uld.offsetTop;
+        	
    	  },
    	  uletop:function(){
         	 document.documentElement.scrollTop=this.$refs.ule.offsetTop;
+   	  },
+   	  ulftop:function(){
+        	 document.documentElement.scrollTop=this.$refs.ulf.offsetTop;
+   	  },
+   	  ulxtop:function(){
+        	 document.documentElement.scrollTop=this.$refs.ulx.offsetTop;
+   	  },
+   	  ulytop:function(){
+        	 document.documentElement.scrollTop=this.$refs.uly.offsetTop;
+   	  },
+   	  ulztop:function(){
+        	 document.documentElement.scrollTop=this.$refs.ulz.offsetTop;
+   	  },
+   	  cityTopLeftClick:function(e){	  
+   	  	     window.history.back();
    	  },
    	  handleguonei:function(e){
    	  	   this.flag=false,
@@ -79,18 +94,25 @@ export default {
    	  	   this.$refs.guowai.style.color="#fff"
    	  },
    	  handleguowai:function(e){
-   	  	this.flag1=false,
-   	  	this.flag=true,
-   	  	e.target.style.background="#fff",
-   	  	e.target.style.color="#00BCD4",
-   	  	this.$refs.guonei.style.background="#00BCD4",
-   	  	this.$refs.guonei.style.color="#fff"
-   	  }
+	   	  	this.flag1=false,
+	   	  	this.flag=true,
+	   	  	e.target.style.background="#fff",
+	   	  	e.target.style.color="#00BCD4",
+	   	  	this.$refs.guonei.style.background="#00BCD4",
+	   	  	this.$refs.guonei.style.color="#fff"
+   	    }
+  	 },
+       computed:{
+          cityInfo(){        
+       	    return this.$store.state.city.cityInfo;
+        }    	   
+      }
     }
-}
+
 </script>
 
 <style>
+    
 	footer{
 	   position: relative;		
 	}
@@ -140,7 +162,7 @@ export default {
 		right: .2rem;
 	}
 	.fixedul li{
-		margin-bottom: .5rem;
+	   padding-bottom: .5rem;
 		color: #00BCD4;
 	}
 </style>

@@ -1,4 +1,5 @@
 <template>
+	
 	 <div class="list-content">
 	 		 <p class="list-content-top">
 	 		 	<span class="list-content-topLeft">
@@ -62,6 +63,7 @@
 	 		 	搜索身边的景点
 	 		 </div>
 	 </div>
+	 
 </template>
 
 <script>
@@ -91,7 +93,8 @@ export default {
 		 	if(this.listss.indexOf(e.target.text)==-1){
 		     this.listss.push(e.target.text);
 		    }
-		 }						
+		 },
+		 
     }
 }
 </script>
@@ -180,5 +183,5 @@ export default {
 		border: 1px solid #ccc;
 		float: left;
 	}
-	
+
 </style>

@@ -1,6 +1,53 @@
 {
 	"ret": true,
 	"data": {
+		"swiperInfo1": [{
+			"id": 1,
+			"title":"一日游",
+			"imgUrl": "http://img1.qunarzz.com/piao/fusion/1611/59/569d3c096e542502.png",
+			"link": "/list"
+		}, {
+		    "title":"泡温泉",
+			"id": 2,
+			"imgUrl": "http://img1.qunarzz.com/piao/fusion/1611/59/569d3c096e542502.png",
+			"link": "/list"
+		},
+		  {
+			"id": 3,
+			"title":"秋美色",
+			"imgUrl": "http://img1.qunarzz.com/piao/fusion/1611/59/569d3c096e542502.png",
+			"link": "/list"
+		},
+		  {
+			"id": 4,
+			"title":"景点门票",
+			"imgUrl": "http://img1.qunarzz.com/piao/fusion/1611/59/569d3c096e542502.png",
+			"link": "/yiriyou"
+		},
+		  {
+			"id": 5,
+			"title":"一日游",
+			"imgUrl": "http://img1.qunarzz.com/piao/fusion/1611/59/569d3c096e542502.png",
+			"link": "/list"
+		}
+		, {
+			"id": 6,
+			"title":"景点门票",
+			"imgUrl": "http://img1.qunarzz.com/piao/fusion/1611/59/569d3c096e542502.png",
+			"link": "/list"
+		}
+		, {
+			"id": 7,
+			"title":"秋美色",
+			"imgUrl": "http://img1.qunarzz.com/piao/fusion/1611/59/569d3c096e542502.png",
+			"link": "/list"
+		},
+		  {
+			"id": 8,
+			"title":"泡温泉",
+			"imgUrl": "http://img1.qunarzz.com/piao/fusion/1611/59/569d3c096e542502.png",
+			"link": "/list"
+		}],
 		"swiperInfo": [{
 			"id": 1,
 			"imgUrl": "http://img1.qunarzz.com/piao/fusion/1609/15/630b82d932a3c402.jpg_640x200_862e836b.jpg",

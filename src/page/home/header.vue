@@ -1,6 +1,6 @@
 <template>
  		<header class="header">
- 		<div class="header-left iconfont icon-fanhui"></div>
+ 		<div class="header-left iconfont icon-fanhui" ></div>
 	 	<router-link to="/list">
 		 		<div class="header-title">
 		 			输入城市/景点/游玩主题

@@ -1,6 +1,6 @@
 <template>
  		<header class="yiriyou-top">
- 		<div class="yiriyou-top-left   iconfont icon-fanhui"></div>
+ 		<div class="yiriyou-top-left   iconfont icon-fanhui" @click="yiriyouTopLeftClick"></div>
 		 		<input class="yiriyou-top-title" autofocus="autofocus"  placeholder="一日游" /><a href="#" class="iconfont icon-cuowu yiriyou-top-titlea"></a>
  		<div class="yiriyou-top-right">
  			搜索
@@ -9,7 +9,12 @@
 </template>
 <script>
 export default {
-
+   
+      methods:{
+	      	yiriyouTopLeftClick(){
+	      	     window.history.back()
+	      	}
+      }
       
 }
 </script>

@@ -13,6 +13,12 @@ export default {
 </script>
 
 <style>
+    .city-top1{
+    	width: 100%;
+    	background: #00BCD4;
+    	z-index: 999;
+    	position:fixed;
+    }
 	.city-top {
 		position: relative;
 		height: 1.8rem;
@@ -27,7 +33,7 @@ export default {
 		color: #fff;
 	}
 	.city-top-title {
-		text-align: center;
+		text-align: left;
 		position: absolute;
 		width: 5.2rem;
 		right: 1.28rem;

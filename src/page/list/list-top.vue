@@ -1,6 +1,6 @@
 <template>
  		<header class="list-top">
- 		<div class="list-top-left   iconfont icon-fanhui"></div>
+ 		<div class="list-top-left   iconfont icon-fanhui" @click="listTopLeftClick"></div>
 		 		<input class="list-top-title" autofocus="autofocus"  placeholder="输入城市/景点/游玩主题" />
  		<div class="list-top-right">
  			{{con}}
@@ -14,6 +14,11 @@ export default {
    	return {
    		con:"搜索"
    	}
+   },
+   methods:{
+   	listTopLeftClick:function(e){
+   		 window.history.back()
+   	 }
    }
 }
 </script>

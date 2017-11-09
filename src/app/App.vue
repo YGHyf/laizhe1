@@ -15,5 +15,4 @@ export default {
        @import "./iconf/iconfont.css";
        @import "../../node_modules/swiper/dist/css/swiper.css"
       
-
 </style>

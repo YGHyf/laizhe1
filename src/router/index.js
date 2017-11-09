@@ -20,8 +20,7 @@ export default new Router({
     	 	path:'/yiriyou',
     	  name:"yiriyou",
     	 component:YiRiYou
-    },
-    {
+    },{
     	 	path:'/city',
     	  name:"city",
     	 component:CiTy

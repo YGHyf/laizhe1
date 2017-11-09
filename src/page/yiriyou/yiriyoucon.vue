@@ -2,8 +2,9 @@
     <div class="yiriyouCon">
     	    <a class="yiriyouConTopa iconfont icon-jiantou-copy-copy" @click="yiriyouConTopa"></a>
     	<div class="yiriyouConTop" v-if="con1">
-    		<ul class="yiriyouConUl1" >	<li v-for="item in lists">{{item}}</li></ul>
-    	</div>
+    		         <ul class="yiriyouConUl1" >	<li v-for="item in lists">{{item}}</li></ul>
+	           </div>
+	      
     	<div class="yiriyouConTop1" v-if="con2" >
     		<p class="yiriyouConTop1p" >游玩景点（可多选）<span class="iconfont icon-angle-up" @click="yiriyouConTop1pspan"></span></p>
     		<ul class="yiriyouConTop1ul"  v-for="item in lists">
@@ -11,12 +12,17 @@
     		</ul>
     	</div>
     	<dl class="yiriyoudl1"></dl>
-    	<dl class="yiriyoudl " v-for="item in yiriyoulist">
-    		<dt class="yiriyoudt"><span>{{item.span}}</span><img src="http://img1.qunarzz.com/p/tts1/1605/35/f267ae654a8511f7.jpg_110x110_33358754.jpg"></dt>
-    		<dd class="yiriyoudd1">{{item.title}}</dd>
-    		<dd class="yiriyoudd2"><span style="color: #00BCD4;">{{item.span1}}</span><span>{{item.span2}}</span><span style="border-right: none;">{{item.span3}}</span></dd>
-    		<dd class="yiriyoudd3"><span>{{item.span4}}</span><strong>{{item.strong}}</strong></dd>	
-    	</dl>   
+    	<div id="wrapper">
+    		<div id="scroller">
+    		<p class="scroller-p" v-if="conshow">正在刷新。。。</p>
+	    	<dl class="yiriyoudl " v-for="item in yiriyoulist">
+	    		<dt class="yiriyoudt"><span>{{item.span}}</span><img src="http://img1.qunarzz.com/p/tts1/1605/35/f267ae654a8511f7.jpg_110x110_33358754.jpg"></dt>
+	    		<dd class="yiriyoudd1">{{item.title}}</dd>
+	    		<dd class="yiriyoudd2"><span style="color: #00BCD4;">{{item.span1}}</span><span>{{item.span2}}</span><span style="border-right: none;">{{item.span3}}</span></dd>
+	    		<dd class="yiriyoudd3"><span>{{item.span4}}</span><strong>{{item.strong}}</strong></dd>	
+	    	</dl>   
+	    	</div>
+    	</div>
     	 <div class="footer" v-if="show">
     	   <button class="footerbtn iconfont icon-quanbufenlei">
     	   	  <span class="footerbtnsp">全部分类</span>   	 
@@ -33,15 +39,19 @@
    
 </template>
 <script>
+    import A from '../../util/iscroll-probe.js'
 export default {
+	
 	data(){
 		return{
 			lists:['八达岭长城','故宫','古北水镇','鸟巢','水利当','八达岭长城','故宫','古北水镇','鸟巢','水利当','八达岭长城','故宫','古北水镇','鸟巢','水利当','把雁塔','八达岭长城','故宫','古北水镇','鸟巢','水利当','把雁塔'],
 			con1:true,
+			conshow:false,
 			con2:false,
 			show:false,
 			scrollTop1:0,
 			scrollTop2:0,
+			flag:false,
 			yiriyoulist:[{
 				span:"可预定",
 				img:"http://img1.qunarzz.com/p/tts1/1605/35/f267ae654a8511f7.jpg_110x110_33358754.jpg",
@@ -155,25 +165,52 @@ export default {
 		  this.con2 = true;
 	    },
 
-	    handleScroll: function() {
-	    
+	    handleScroll: function() {	    
    			this.scrollTop1 = this.scrollTop2;  
-		  	this.scrrfrollTop2 = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+		  	this.scrollTop2 = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
 		  	if(this.scrollTop1 <= this.scrollTop2) {
 		  		this.show = true;
 		  	    }else {
 		  		this.show = false;
 		  	}	  	   
-	},
-	
+	    },
     },
-    mounted:function(){
-		window.addEventListener("scroll",this.handleScroll);
-	    }
+    mounted(){
+		this.myScroll = new IScroll("#wrapper",{probeType:3,mouseWheel : true}); 
+		
+		this.myScroll.on('scroll',()=>{
+		 	if(!this.flag){
+		 	if(this.myScroll.y>=50){
+		 		this.yiriyoulist.push(this.yiriyoulist[0]);
+		 		this.conshow=true;
+		 		this.flag = true;
+		 	    }
+		 	}
+		 })
+	   },
+	   updated(){
+	   	setTimeout(()=>{
+	   		    this.conshow=false;
+	   		    this.flag = false;
+	   		 	this.myScroll.refresh();
+	   	},1000)  
+	}
 }
 </script>
 
 <style>
+#wrapper {
+	height: 12rem;
+	overflow: hidden;
+}
+
+.scroller-p{
+padding: .5rem 0;
+width: 100%;
+text-align: center;
+height: .4rem;
+	
+}
 
 .icon-jiantou-copy-copy{
 	color: #344344;
@@ -257,9 +294,8 @@ export default {
 	margin: 0 .2rem;
 }
 .yiriyouConTop{
-	
 	width: 100%;
-    overflow-x: auto;
+	overflow: auto;
 	position: absolute;
 	background: #ccc;
 	height: .8rem;

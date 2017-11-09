@@ -1,9 +1,8 @@
 <template>
 	<div>
-
          <home-header />
-         <swiper-content :swiperInfo="this.$store.state.swiperInfo"/>
-         <swiperul-content/>
+         <swiper-content/>
+         <swiperul-content :swiperInfo1="this.$store.state.home.swiperInfo1"/>
 	     <home-fourPart/>
 		 <weekend-list/>
 	</div>
@@ -15,7 +14,6 @@ import SwiperComponent from "./swiper";
 import SwiperulComponent from "./swiperul";
 import FourPartComponent from "./FourPart";
 import weekendList from "./weekend-list";
-import axios from 'axios';
 
 export default {
 
@@ -26,29 +24,12 @@ export default {
 		"home-fourPart":FourPartComponent,
 		"weekend-list":weekendList
 		},
-		methods: {
-		getHomeData() {
-			    axios.get('/static/index.json')
-				.then(this.handleGetDataSucc.bind(this))
-				.catch(this.handleGetDataErr.bind(this))
-		},
-
-		handleGetDataSucc(response) {
-			if (response.status === 200) {
-				const {data}  = response.data;
-				this.$store.commit("changeSwiperInfo",data.swiperInfo)
-			}
-		},
-
-		handleGetDataErr(err) {
-			console.log(err);
-		}
-	},
 
 	mounted() {
-		this.getHomeData();
-	}
-
+		if(this.$store.getters.shouldGetData){
+		    this.$store.dispatch("getSwiperInfo");
+	    }
+   }
 }
 
 
