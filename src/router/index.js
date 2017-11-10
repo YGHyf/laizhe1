@@ -4,6 +4,7 @@ import Home from '@/page/home/Home'
 import List from '@/page/list/list'
 import YiRiYou from "@/page/yiriyou/yiriyou"
 import CiTy from '@/page/city/city'
+import Scenic from '@/page/scenic/scenic'
 Vue.use(Router)
 
 export default new Router({
@@ -25,6 +26,11 @@ export default new Router({
     	 	path:'/city',
     	  name:"city",
     	 component:CiTy
+    },
+    {
+    	path:'/scenic',
+    	name:"scenic",
+    	component:Scenic
     }
   ]
 })
