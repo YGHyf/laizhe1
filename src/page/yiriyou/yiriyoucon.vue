@@ -39,7 +39,7 @@
    
 </template>
 <script>
-    import A from '../../util/iscroll-probe.js'
+    require('../../util/iscroll-probe.js');
 export default {
 	
 	data(){
@@ -163,23 +163,20 @@ export default {
 	    yiriyouConTopa:function(){
 	      this.con1 = false;
 		  this.con2 = true;
-	    },
-
-	    handleScroll: function() {	    
-   			this.scrollTop1 = this.scrollTop2;  
-		  	this.scrollTop2 = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
-		  	if(this.scrollTop1 <= this.scrollTop2) {
-		  		this.show = true;
-		  	    }else {
-		  		this.show = false;
-		  	}	  	   
-	    },
+	    }
     },
     mounted(){
-		this.myScroll = new IScroll("#wrapper",{probeType:3,mouseWheel : true}); 
-		
+       
+		this.myScroll = new IScroll("#wrapper",{probeType:3,mouseWheel : true}); 	
+		 window.addEventListener("scroll",this.handleScroll);
 		this.myScroll.on('scroll',()=>{
+		
 		 	if(!this.flag){
+		 	if(this.myScroll.y<(-300)){
+		 		this.show = true;
+		 	}else{
+		 		this.show = false;
+		 	}
 		 	if(this.myScroll.y>=50){
 		 		this.yiriyoulist.push(this.yiriyoulist[0]);
 		 		this.conshow=true;
@@ -187,7 +184,8 @@ export default {
 		 	    }
 		 	}
 		 })
-	   },
+		
+	  },
 	   updated(){
 	   	setTimeout(()=>{
 	   		    this.conshow=false;
@@ -202,6 +200,12 @@ export default {
 #wrapper {
 	height: 12rem;
 	overflow: hidden;
+}
+
+
+.icon-angle-up{
+     font-size:1rem;
+     margin-top: -0.2rem;
 }
 
 .scroller-p{

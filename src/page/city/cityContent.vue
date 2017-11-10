@@ -13,7 +13,7 @@
 	     	 <ul class="cityContentUl1"><li>北京</li></ul>
 	     </div>
 	     <div class="cityContentD2" v-if="flag1">
-	     	 <p class="cityContentP1"  ref="input1">热门城市</p>
+	     	 <p class="cityContentP1">热门城市</p>
 	     	 <ul class="cityContentUl2"><li v-for="item in cityInfo.title" style="float: left;">{{item}}</li></ul>
 	     </div>
 	     <div class="cityContentD3">
@@ -28,17 +28,9 @@
 	     	 <ul class="cityContentUl3" ref="ulz"><li v-for="item in cityInfo.cityInfo1.Z" v-if="flag1">{{item}}</li><li v-for="item in cityInfo.cityInfo2.Z" v-if="flag">{{item}}</li></ul>
 	     </div>
 	     <div class="fixed">
-	     	<ul class="fixedul" >
-	     		<li @touchstart="ulatop">A</li>
-	     		<li @touchstart="ulbtop">B</li>
-	     		<li @touchmove="ulctop" >C</li>
-	     		<li @touchstart="uldtop">D</li>
-	     		<li @touchstart="uletop">E</li>
-	     		<li @touchstart="ulftop">F</li>
-	     		<li @touchstart="ulxtop">X</li>
-	     		<li @touchstart="ulytop">Y</li>
-	     		<li @touchstart="ulztop">Z</li>
-	     	</ul>
+	     	<ul class="fixedul"  v-for="(item,key) in cityInfo.cityInfo1 ">
+	     		<li ref="{{key}}" @touchstart="handle">{{key}}</li>
+	         </ul>
 	     </div>
      </footer>
     </div>
@@ -49,39 +41,26 @@ export default {
 	
    data(){
    	return {
-   	   flag:false,
-   	   flag1:true
+   		positions:[],
+   	    flag:false,
+   	    flag1:true
    	   }
     },
    methods:{
-      ulatop:function(){
-             document.documentElement.scrollTop=this.$refs.ula.offsetTop;
-   	  },
-   	  ulbtop:function(){
-        	 document.documentElement.scrollTop=this.$refs.ulb.offsetTop;
-   	  },
-   	  ulctop:function(){
-   	  	     	 document.documentElement.scrollTop=this.$refs.ulc.offsetTop;
-   	  },
-   	  uldtop:function(){
-        	 document.documentElement.scrollTop=this.$refs.uld.offsetTop;
-        	
-   	  },
-   	  uletop:function(){
-        	 document.documentElement.scrollTop=this.$refs.ule.offsetTop;
-   	  },
-   	  ulftop:function(){
-        	 document.documentElement.scrollTop=this.$refs.ulf.offsetTop;
-   	  },
-   	  ulxtop:function(){
-        	 document.documentElement.scrollTop=this.$refs.ulx.offsetTop;
-   	  },
-   	  ulytop:function(){
-        	 document.documentElement.scrollTop=this.$refs.uly.offsetTop;
-   	  },
-   	  ulztop:function(){
-        	 document.documentElement.scrollTop=this.$refs.ulz.offsetTop;
-   	  },
+         handle:function(e){
+      	var num  = Math.floor((e.targetTouches[0].clientY-200)/40);
+      	document.documentElement.scrollTop=this.positions[num];
+        document.addEventListener("touchmove",this.handleMove,false);
+        document.addEventListener("touchend",this.handleEnd,false);
+   	   },
+   	 handleMove:function(e){
+   	 	var num1  = Math.floor((e.targetTouches[0].clientY-200)/40);
+   	 	document.documentElement.scrollTop=this.positions[num1];
+   	 },
+   	 handleEnd:function(e){
+   	 	document.removeEventListener("touchmove",this.handleMove);
+   	 	document.removeEventListener("touchend",this.handleMoveEnd);
+   	 },
    	  cityTopLeftClick:function(e){	  
    	  	     window.history.back();
    	  },
@@ -106,6 +85,13 @@ export default {
           cityInfo(){        
        	    return this.$store.state.city.cityInfo;
         }    	   
+      },
+      updated(){
+      	var cityContentUl3 = document.getElementsByClassName("cityContentUl3");
+      	var cityContentUl3list = Array.from(cityContentUl3);
+      	for(var i in cityContentUl3list){
+      	     this.positions.push(cityContentUl3list[i].offsetTop);
+      	}
       }
     }
 
@@ -116,6 +102,12 @@ export default {
 	footer{
 	   position: relative;		
 	}
+	 .city-top-title1{
+	 	border-right: none;
+	 }
+	  .city-top-title2{
+	 	border-left: none;
+	 }
      .cityContentD2{
      	overflow: hidden;
      }
